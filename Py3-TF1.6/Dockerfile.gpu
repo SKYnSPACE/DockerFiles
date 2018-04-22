@@ -2,6 +2,7 @@ FROM tensorflow/tensorflow:1.6.0-gpu-py3
 
 MAINTAINER Seongheon Henry Lee <skynspace@kaist.ac.kr>
 #docker run -d -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/ 
+#docker run -it -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/
 
 RUN apt-get update
 
@@ -55,4 +56,5 @@ EXPOSE 8888
 EXPOSE 6006
 
 
+#! System settings
 WORKDIR /mnt/notebooks
