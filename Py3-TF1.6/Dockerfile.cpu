@@ -1,13 +1,13 @@
 FROM tensorflow/tensorflow:1.6.0-py3
 
 MAINTAINER Seongheon Henry Lee <skynspace@kaist.ac.kr>
-#docker run -d -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/ 
-#docker run -it -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/
-
-RUN apt-get update
+#sudo docker run -d -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/ [IMAGE] 
+#sudo docker run -it -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/ [IMAGE]
+#sudo docker exec -it [NAME] /bin/bash
 
 #! Linux apps. 
-RUN apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y \
         build-essential \
         cmake \
         git \
@@ -26,35 +26,41 @@ RUN apt-get install -y \
         unzip \
         vim \
         wget \
+        xvfb \
         yasm
         
         
-#! Python libs. 
+WORKDIR /mnt/notebooks
+
+
+#! Python libs. with OpenAI Gym 
 RUN pip3 --no-cache-dir install \
         h5py \
         hdf5storage \
+        matplotlib \
         numpy \
+        pandas \
         py3nvml \
-        scipy
-        
-# OpenAI Gym
-RUN pip3 --no-cache-dir install \
-        gym
-        
-# DependencY to render OpenAI Gym in a Jupyter notebook as a gif.
-WORKDIR /tmp
-RUN git clone https://github.com/jakevdp/JSAnimation \
+        scipy \
+        sklearn \
+    && pip3 --no-cache-dir install \
+        gym \
+# Dependency to render OpenAI Gym in a Jupyter notebook as a gif.
+    && git clone https://github.com/jakevdp/JSAnimation \
         && cd JSAnimation \
         && python3 setup.py install
 
 
-#! Jupyter Notebook
+#! Ports
+# Jupyter Notebook
 EXPOSE 8888
-
-
-#! TensorBoard
+# TensorBoard
 EXPOSE 6006
 
 
 #! System settings
-WORKDIR /mnt/notebooks
+# Virtual frame buffer settings for the OpenAI Gym 
+RUN echo '#!/bin/bash' > /tmp/openai-gym.sh && \
+    echo '/usr/bin/xvfb-run -s "-screen 0 1280x720x24" /usr/local/bin/jupyter-notebook --no-browser --ip=0.0.0.0 --notebook-dir=/mnt/notebooks --allow-root' >> /tmp/openai-gym.sh && \
+    chmod +x /tmp/openai-gym.sh
+CMD ["/tmp/openai-gym.sh"]
