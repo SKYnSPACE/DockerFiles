@@ -19,7 +19,9 @@ nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/ skynspac
 
 ## Ver 0.2:
 Added two more libraries.
-gym[atari], scikit-image
+
+- gym[atari] 
+- scikit-image
 
 In progress.
 '''
