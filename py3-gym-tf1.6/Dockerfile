@@ -43,8 +43,10 @@ RUN pip3 --no-cache-dir install \
         py3nvml \
         scipy \
         sklearn \
+        scikit-image\
     && pip3 --no-cache-dir install \
         gym \
+        gym[atari]\
 # Dependency to render OpenAI Gym in a Jupyter notebook as a gif.
     && git clone https://github.com/jakevdp/JSAnimation \
         && cd JSAnimation \
