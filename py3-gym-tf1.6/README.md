@@ -24,6 +24,8 @@ Added two more libraries.
 - scikit-image
 
 In progress.
-'''
-docker 
-'''
+
+```
+docker run -it -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/ skynspace/py3-gym-tf1.6:0.2
+nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/ skynspace/py3-gym-tf1.6gpu:0.2
+```
