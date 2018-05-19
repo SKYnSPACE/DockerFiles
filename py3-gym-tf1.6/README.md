@@ -11,6 +11,7 @@ Installing CUDA w/ --no-opengl-files option might helpful.
 
 ## Ver 0.1:
 https://hub.docker.com/r/skynspace/py3-gym-tf1.6/
+https://hub.docker.com/r/skynspace/py3-gym-tf1.6gpu/
 
 ```
 docker run -it -p 8888:8888 -p 6006:6006 -v $PWD:/mnt/notebooks/ skynspace/py3-gym-tf1.6:0.1
