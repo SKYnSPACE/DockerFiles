@@ -42,7 +42,7 @@ RUN pip3 --no-cache-dir install \
         pandas \
         py3nvml \
         scipy \
-        sklearn \
+        scikit-learn \
     && pip3 --no-cache-dir install \
         gym \
 # Dependency to render OpenAI Gym in a Jupyter notebook as a gif.
