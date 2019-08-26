@@ -54,16 +54,6 @@ RUN pip3 --no-cache-dir install \
     && python3 -m pip install gym[atari] \
     && python3 -m pip install scikit-image
 
-# OpenAI baselines with dependencies
-RUN apt-get install -y \
-        libfontconfig \
-        libopenmpi-dev \
-        libxrender1 \
-        python3-dev \
-        zlib1g-dev \
-    && git clone https://github.com/openai/baselines.git \
-        && cd baselines \
-        && pip3 install -e .
 
 #! Ports
 # Jupyter Notebook
