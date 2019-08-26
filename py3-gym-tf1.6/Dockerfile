@@ -34,7 +34,8 @@ WORKDIR /mnt/notebooks
 
 
 #! Python libs. with OpenAI Gym 
-RUN pip3 --no-cache-dir install \
+RUN pip3 install --upgrade pip && \
+    pip3 --no-cache-dir install \
         h5py \
         hdf5storage \
         matplotlib \
